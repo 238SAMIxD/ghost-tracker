@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ghost Tracker — Test Page</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 20px;
+        background: #1e293b;
+        color: #f8fafc;
+      }
+      h1 { color: #6366f1; }
+      .tracker-list { list-style: none; padding: 0; }
+      .tracker-list li {
+        padding: 8px 12px;
+        margin: 4px 0;
+        background: #334155;
+        border-radius: 6px;
+        font-size: 13px;
+        font-family: monospace;
+      }
+      .category { color: #94a3b8; font-size: 11px; text-transform: uppercase; }
+    </style>
+  </head>
+  <body>
+    <h1>👻 Ghost Tracker Test Page</h1>
+    <p>This page attempts to load known tracking scripts. Ghost Tracker should intercept them.</p>
+
+    <h2>Embedded Tracker Scripts:</h2>
+    <ul class="tracker-list">
+      <li><span class="category">Analytics</span> — google-analytics.com</li>
+      <li><span class="category">Analytics</span> — googletagmanager.com</li>
+      <li><span class="category">Ads</span> — doubleclick.net</li>
+      <li><span class="category">Social</span> — connect.facebook.net</li>
+      <li><span class="category">Telemetry</span> — clarity.ms</li>
+    </ul>
+
+    <!-- Analytics trackers -->
+    <script src="https://www.google-analytics.com/analytics.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=TEST-123"></script>
+
+    <!-- Ads trackers -->
+    <script src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+
+    <!-- Social trackers -->
+    <script src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+    <!-- Telemetry trackers -->
+    <script src="https://www.clarity.ms/tag/test123"></script>
+  </body>
+</html>

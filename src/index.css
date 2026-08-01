@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+
+/* Ghost Tracker — Theme */
+:root {
+  --gt-primary: #6366f1;
+  --gt-primary-hover: #4f46e5;
+  --gt-bg-dark: #0f172a;
+  --gt-bg-card: #1e293b;
+  --gt-bg-surface: #334155;
+  --gt-text-primary: #f8fafc;
+  --gt-text-secondary: #94a3b8;
+  --gt-accent-green: #22c55e;
+  --gt-accent-red: #ef4444;
+  --gt-accent-yellow: #eab308;
+  --gt-accent-blue: #3b82f6;
+  --gt-accent-purple: #a855f7;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--gt-bg-dark);
+  color: var(--gt-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
