@@ -10,17 +10,25 @@ export function Popup() {
       const tab = tabs[0];
       if (tab?.url) {
         try {
-          setCurrentDomain(new URL(tab.url).hostname);
+          const hostname = new URL(tab.url).hostname;
+          if (!hostname) {
+            setCurrentDomain('—');
+            setBlockedCount(0);
+            return;
+          }
+
+          setCurrentDomain(hostname);
+          
+          // Get blocked count for this domain
+          chrome.runtime.sendMessage({ type: 'GET_EVENT_COUNT', hostDomain: hostname }, (response) => {
+            if (response?.count !== undefined) {
+              setBlockedCount(response.count);
+            }
+          });
         } catch {
           setCurrentDomain('—');
+          setBlockedCount(0);
         }
-      }
-    });
-
-    // Get blocked count
-    chrome.runtime.sendMessage({ type: 'GET_EVENT_COUNT' }, (response) => {
-      if (response?.count !== undefined) {
-        setBlockedCount(response.count);
       }
     });
   }, []);

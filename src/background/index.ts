@@ -73,7 +73,15 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   }
 
   if (message.type === 'GET_EVENT_COUNT') {
-    db.getEventCount().then((count) => sendResponse({ count }));
+    if (typeof message.hostDomain === 'string') {
+      if (message.hostDomain === '') {
+        sendResponse({ count: 0 });
+      } else {
+        db.getEventCountByHost(message.hostDomain).then((count) => sendResponse({ count }));
+      }
+    } else {
+      db.getEventCount().then((count) => sendResponse({ count }));
+    }
     return true;
   }
 
