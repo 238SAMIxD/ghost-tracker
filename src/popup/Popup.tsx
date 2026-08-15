@@ -39,64 +39,34 @@ export function Popup() {
   };
 
   return (
-    <div
-      style={{
-        width: 320,
-        padding: 20,
-        fontFamily: "'Inter', system-ui, sans-serif",
-        background: 'var(--gt-bg-dark, #0f172a)',
-        color: 'var(--gt-text-primary, #f8fafc)',
-      }}
-    >
+    <div className="w-[320px] p-5 font-sans bg-slate-950 text-slate-50">
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-        <span style={{ fontSize: 28 }}>👻</span>
+      <div className="flex items-center gap-2.5 mb-4">
+        <span className="text-3xl">👻</span>
         <div>
-          <h1 style={{ margin: 0, fontSize: 18, fontWeight: 700 }}>Ghost Tracker</h1>
-          <p style={{ margin: 0, fontSize: 12, color: 'var(--gt-text-secondary, #94a3b8)' }}>
+          <h1 className="m-0 text-lg font-bold">Ghost Tracker</h1>
+          <p className="m-0 text-xs text-slate-400">
             Tracking script interceptor
           </p>
         </div>
       </div>
 
       {/* Current domain */}
-      <div
-        style={{
-          background: 'var(--gt-bg-card, #1e293b)',
-          borderRadius: 8,
-          padding: 12,
-          marginBottom: 12,
-        }}
-      >
-        <p style={{ margin: 0, fontSize: 11, color: 'var(--gt-text-secondary, #94a3b8)', textTransform: 'uppercase', letterSpacing: 1 }}>
+      <div className="bg-slate-900 rounded-lg p-3 mb-3 border border-slate-800 shadow-sm">
+        <p className="m-0 text-[11px] text-slate-400 uppercase tracking-widest font-medium">
           Current Site
         </p>
-        <p style={{ margin: '4px 0 0', fontSize: 14, fontWeight: 600, wordBreak: 'break-all' }}>
+        <p className="mt-1 mb-0 text-sm font-semibold break-all">
           {currentDomain}
         </p>
       </div>
 
       {/* Blocked count */}
-      <div
-        style={{
-          background: 'var(--gt-bg-card, #1e293b)',
-          borderRadius: 8,
-          padding: 12,
-          marginBottom: 16,
-          textAlign: 'center',
-        }}
-      >
-        <p style={{ margin: 0, fontSize: 11, color: 'var(--gt-text-secondary, #94a3b8)', textTransform: 'uppercase', letterSpacing: 1 }}>
+      <div className="bg-slate-900 rounded-lg p-3 mb-4 text-center border border-slate-800 shadow-sm">
+        <p className="m-0 text-[11px] text-slate-400 uppercase tracking-widest font-medium">
           Trackers Blocked
         </p>
-        <p
-          style={{
-            margin: '8px 0 0',
-            fontSize: 36,
-            fontWeight: 800,
-            color: 'var(--gt-accent-green, #22c55e)',
-          }}
-        >
+        <p className="mt-2 mb-0 text-4xl font-extrabold text-emerald-500">
           {blockedCount}
         </p>
       </div>
@@ -104,22 +74,9 @@ export function Popup() {
       {/* Open dashboard button */}
       <button
         onClick={handleOpenDashboard}
-        style={{
-          width: '100%',
-          padding: '10px 16px',
-          border: 'none',
-          borderRadius: 8,
-          background: 'var(--gt-primary, #6366f1)',
-          color: '#fff',
-          fontSize: 14,
-          fontWeight: 600,
-          cursor: 'pointer',
-          transition: 'background 0.2s',
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--gt-primary-hover, #4f46e5)')}
-        onMouseLeave={(e) => (e.currentTarget.style.background = 'var(--gt-primary, #6366f1)')}
+        className="w-full py-2.5 px-4 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-semibold transition-colors cursor-pointer border border-indigo-500/50 shadow-sm flex items-center justify-center gap-2"
       >
-        📊 Open Full Dashboard
+        <span>📊</span> Open Full Dashboard
       </button>
     </div>
   );
