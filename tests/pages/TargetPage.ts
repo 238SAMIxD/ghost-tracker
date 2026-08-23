@@ -1,20 +1,12 @@
 import type { Page } from '@playwright/test';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 export class TargetPage {
   constructor(private readonly page: Page) {}
 
   static async openMockPage(page: Page): Promise<TargetPage> {
-    const mockPagePath = path.resolve(
-      __dirname,
-      '../mocks/tracker-test-page.html'
-    );
+    const mockPageUrl = new URL('../mocks/tracker-test-page.html', import.meta.url);
 
-    await page.goto(`file://${mockPagePath}`);
+    await page.goto(mockPageUrl.href);
 
     return new TargetPage(page);
   }
