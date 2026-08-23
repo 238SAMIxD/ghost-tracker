@@ -16,7 +16,6 @@ export const test = base.extend<{
   context: BrowserContext;
   extensionId: string;
 }>({
-  // eslint-disable-next-line no-empty-pattern
   context: async ({}, use) => {
     const pathToExtension = path.resolve(__dirname, '../../dist');
     const context = await chromium.launchPersistentContext('', {
@@ -24,8 +23,11 @@ export const test = base.extend<{
       args: [
         `--disable-extensions-except=${pathToExtension}`,
         `--load-extension=${pathToExtension}`,
+        '--allow-file-access-from-files',
       ],
     });
+    // Playwright's fixture callback is intentionally named `use`.
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     await use(context);
     await context.close();
   },
@@ -34,7 +36,10 @@ export const test = base.extend<{
     if (!background) {
       background = await context.waitForEvent('serviceworker');
     }
+    await background.evaluate(() => undefined);
     const extensionId = background.url().split('/')[2];
+    // Playwright's fixture callback is intentionally named `use`.
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     await use(extensionId);
   },
 });
