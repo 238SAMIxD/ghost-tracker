@@ -3,6 +3,7 @@ import type { TrackerEvent } from '@/db';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { MetricCard } from './components/MetricCard';
+import { Charts } from './components/Charts';
 
 export type ViewType = 'overview' | 'events' | 'settings';
 
@@ -83,11 +84,8 @@ export function Dashboard() {
                   <MetricCard label="Telemetry" value={categoryCounts.telemetry || 0} color={categoryColors.telemetry} />
                 </div>
 
-                {/* Dashboard summary placeholder - Future Charts go here */}
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 flex flex-col items-center justify-center text-slate-500 h-64 border-dashed">
-                  <span className="text-4xl mb-3">📈</span>
-                  <p className="font-medium">Data Visualizations coming soon (PI-2)</p>
-                </div>
+                {/* Data Visualizations */}
+                <Charts events={events} categoryColors={categoryColors} />
               </>
             )}
 
