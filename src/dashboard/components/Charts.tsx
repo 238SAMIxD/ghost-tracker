@@ -70,7 +70,7 @@ export function Charts({ events, categoryColors }: ChartsProps) {
         <h2 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-6">
           Tracker Categories
         </h2>
-        <div className="flex-1 h-[250px]">
+        <div className="flex-1 h-chart">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -111,7 +111,7 @@ export function Charts({ events, categoryColors }: ChartsProps) {
         <h2 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-6">
           Top Targeted Domains
         </h2>
-        <div className="flex-1 h-[250px]">
+        <div className="flex-1 h-chart">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={barData} layout="vertical" margin={{ top: 0, right: 30, left: 40, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" horizontal={true} vertical={false} />

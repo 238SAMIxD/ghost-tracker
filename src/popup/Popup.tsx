@@ -39,7 +39,7 @@ export function Popup() {
   };
 
   return (
-    <div className="w-[320px] p-5 font-sans bg-slate-950 text-slate-50">
+    <div className="w-popup p-5 font-sans bg-slate-950 text-slate-50">
       {/* Header */}
       <div className="flex items-center gap-2.5 mb-4">
         <span className="text-3xl">👻</span>
@@ -53,7 +53,7 @@ export function Popup() {
 
       {/* Current domain */}
       <div className="bg-slate-900 rounded-lg p-3 mb-3 border border-slate-800 shadow-sm">
-        <p className="m-0 text-[11px] text-slate-400 uppercase tracking-widest font-medium">
+        <p className="m-0 text-xxs text-slate-400 uppercase tracking-widest font-medium">
           Current Site
         </p>
         <p className="mt-1 mb-0 text-sm font-semibold break-all">
@@ -63,7 +63,7 @@ export function Popup() {
 
       {/* Blocked count */}
       <div className="bg-slate-900 rounded-lg p-3 mb-4 text-center border border-slate-800 shadow-sm">
-        <p className="m-0 text-[11px] text-slate-400 uppercase tracking-widest font-medium">
+        <p className="m-0 text-xxs text-slate-400 uppercase tracking-widest font-medium">
           Trackers Blocked
         </p>
         <p className="mt-2 mb-0 text-4xl font-extrabold text-emerald-500">

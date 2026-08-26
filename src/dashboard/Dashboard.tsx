@@ -98,7 +98,7 @@ export function Dashboard() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse text-sm">
                     <thead>
-                      <tr className="bg-slate-900/50 text-slate-400 text-[11px] uppercase tracking-wider">
+                      <tr className="bg-slate-900/50 text-slate-400 text-xxs uppercase tracking-wider">
                         <th className="px-6 py-4 font-medium">Timestamp</th>
                         <th className="px-6 py-4 font-medium">Host Domain</th>
                         <th className="px-6 py-4 font-medium">Tracker URL</th>
@@ -120,12 +120,12 @@ export function Dashboard() {
                             {new Date(event.timestamp).toLocaleString()}
                           </td>
                           <td className="px-6 py-3 font-medium text-slate-200">{event.hostDomain}</td>
-                          <td className="px-6 py-3 max-w-[300px] truncate text-slate-400">
+                          <td className="px-6 py-3 max-w-table-col truncate text-slate-400">
                             {event.trackerUrl}
                           </td>
                           <td className="px-6 py-3">
                             <span
-                              className="inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide text-white"
+                              className="inline-flex px-2 py-0.5 rounded text-micro font-bold uppercase tracking-wide text-white"
                               style={{ backgroundColor: categoryColors[event.category] || categoryColors.unknown }}
                             >
                               {event.category}
