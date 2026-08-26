@@ -21,7 +21,9 @@ interface ChartsProps {
 export function Charts({ events, categoryColors }: ChartsProps) {
   // Aggregate data for Pie Chart (Category Distribution)
   const pieData = useMemo(() => {
-    const counts = events.reduce(
+    const counts = events
+      .filter((e) => e.blocked)
+      .reduce(
       (acc, e) => {
         acc[e.category] = (acc[e.category] || 0) + 1;
         return acc;
@@ -36,7 +38,9 @@ export function Charts({ events, categoryColors }: ChartsProps) {
 
   // Aggregate data for Bar Chart (Top Tracker Domains)
   const barData = useMemo(() => {
-    const counts = events.reduce(
+    const counts = events
+      .filter((e) => e.blocked)
+      .reduce(
       (acc, e) => {
         acc[e.hostDomain] = (acc[e.hostDomain] || 0) + 1;
         return acc;
@@ -50,7 +54,7 @@ export function Charts({ events, categoryColors }: ChartsProps) {
       .slice(0, 5); // Top 5
   }, [events]);
 
-  if (events.length === 0) {
+  if (events.filter((e) => e.blocked).length === 0) {
     return (
       <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 flex flex-col items-center justify-center text-slate-500 h-64 border-dashed">
         <span className="text-4xl mb-3">📈</span>
@@ -66,7 +70,7 @@ export function Charts({ events, categoryColors }: ChartsProps) {
         <h2 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-6">
           Tracker Categories
         </h2>
-        <div className="flex-1 min-h-[250px]">
+        <div className="flex-1 h-[250px]">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -107,7 +111,7 @@ export function Charts({ events, categoryColors }: ChartsProps) {
         <h2 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-6">
           Top Targeted Domains
         </h2>
-        <div className="flex-1 min-h-[250px]">
+        <div className="flex-1 h-[250px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={barData} layout="vertical" margin={{ top: 0, right: 30, left: 40, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" horizontal={true} vertical={false} />
