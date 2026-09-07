@@ -11,7 +11,14 @@ import {
   CartesianGrid,
 } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from '@/components/ui/chart';
+import { 
+  ChartContainer, 
+  ChartTooltip, 
+  ChartTooltipContent, 
+  ChartLegend, 
+  ChartLegendContent, 
+  type ChartConfig 
+} from '@/components/ui/chart';
 import { Activity } from 'lucide-react';
 
 interface ChartsProps {
@@ -108,10 +115,14 @@ export function Charts({ events, categoryColors }: ChartsProps) {
                   />
                 ))}
               </Pie>
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent hideLabel />}
+                />
+                <ChartLegend 
+                  content={<ChartLegendContent />} 
+                  className="-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center" 
+                />
             </PieChart>
           </ChartContainer>
         </CardContent>
