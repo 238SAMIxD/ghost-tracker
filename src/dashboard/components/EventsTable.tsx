@@ -103,7 +103,7 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
               <TableHead aria-sort={sortField === 'timestamp' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
                 <button
                   type="button"
-                  className="flex items-center hover:text-foreground transition-colors focus:outline-none"
+                  className="flex items-center hover:text-foreground transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
                   onClick={() => handleSort('timestamp')}
                 >
                   Timestamp {renderSortIndicator('timestamp')}
@@ -112,7 +112,7 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
               <TableHead aria-sort={sortField === 'hostDomain' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
                 <button
                   type="button"
-                  className="flex items-center hover:text-foreground transition-colors focus:outline-none"
+                  className="flex items-center hover:text-foreground transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
                   onClick={() => handleSort('hostDomain')}
                 >
                   Host Domain {renderSortIndicator('hostDomain')}
@@ -122,7 +122,7 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
               <TableHead aria-sort={sortField === 'category' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
                 <button
                   type="button"
-                  className="flex items-center hover:text-foreground transition-colors focus:outline-none"
+                  className="flex items-center hover:text-foreground transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
                   onClick={() => handleSort('category')}
                 >
                   Category {renderSortIndicator('category')}
@@ -131,7 +131,7 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
               <TableHead aria-sort={sortField === 'blocked' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
                 <button
                   type="button"
-                  className="flex items-center hover:text-foreground transition-colors focus:outline-none"
+                  className="flex items-center hover:text-foreground transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
                   onClick={() => handleSort('blocked')}
                 >
                   Action {renderSortIndicator('blocked')}
