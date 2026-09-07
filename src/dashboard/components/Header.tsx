@@ -1,5 +1,6 @@
 import type { ViewType } from '../Dashboard';
 import { Button } from '@/components/ui/button';
+import { Trash2 } from 'lucide-react';
 
 interface HeaderProps {
   currentView: ViewType;
@@ -26,7 +27,7 @@ export function Header({ currentView, onClearHistory }: HeaderProps) {
             onClick={onClearHistory}
             className="flex items-center gap-2"
           >
-            <span className="text-base">🗑️</span>
+            <Trash2 className="h-4 w-4" />
             Clear History
           </Button>
         )}

@@ -5,6 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Search, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 
 interface EventsTableProps {
   events: TrackerEvent[];
@@ -76,8 +77,8 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
   };
 
   const renderSortIndicator = (field: SortField) => {
-    if (sortField !== field) return <span className="opacity-30 ml-1">↕</span>;
-    return <span className="ml-1 text-primary">{sortOrder === 'asc' ? '↑' : '↓'}</span>;
+    if (sortField !== field) return <ArrowUpDown className="ml-2 h-4 w-4 opacity-50" />;
+    return sortOrder === 'asc' ? <ArrowUp className="ml-2 h-4 w-4" /> : <ArrowDown className="ml-2 h-4 w-4" />;
   };
 
   return (
@@ -90,9 +91,9 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
             placeholder="Search domains or URLs..."
             value={searchQuery}
             onChange={handleSearch}
-            className="w-full pl-10"
+            className="w-full pl-9"
           />
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">🔍</span>
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         </div>
       </CardHeader>
 
@@ -101,41 +102,45 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
           <TableHeader>
             <TableRow>
               <TableHead aria-sort={sortField === 'timestamp' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
-                <button
-                  type="button"
-                  className="flex items-center hover:text-foreground transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+                <Button
+                  variant="ghost"
+                  className="-ml-4 h-8 data-[state=open]:bg-accent"
                   onClick={() => handleSort('timestamp')}
                 >
-                  Timestamp {renderSortIndicator('timestamp')}
-                </button>
+                  Timestamp
+                  {renderSortIndicator('timestamp')}
+                </Button>
               </TableHead>
               <TableHead aria-sort={sortField === 'hostDomain' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
-                <button
-                  type="button"
-                  className="flex items-center hover:text-foreground transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+                <Button
+                  variant="ghost"
+                  className="-ml-4 h-8 data-[state=open]:bg-accent"
                   onClick={() => handleSort('hostDomain')}
                 >
-                  Host Domain {renderSortIndicator('hostDomain')}
-                </button>
+                  Host Domain
+                  {renderSortIndicator('hostDomain')}
+                </Button>
               </TableHead>
               <TableHead>Tracker URL</TableHead>
               <TableHead aria-sort={sortField === 'category' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
-                <button
-                  type="button"
-                  className="flex items-center hover:text-foreground transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+                <Button
+                  variant="ghost"
+                  className="-ml-4 h-8 data-[state=open]:bg-accent"
                   onClick={() => handleSort('category')}
                 >
-                  Category {renderSortIndicator('category')}
-                </button>
+                  Category
+                  {renderSortIndicator('category')}
+                </Button>
               </TableHead>
               <TableHead aria-sort={sortField === 'blocked' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
-                <button
-                  type="button"
-                  className="flex items-center hover:text-foreground transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+                <Button
+                  variant="ghost"
+                  className="-ml-4 h-8 data-[state=open]:bg-accent"
                   onClick={() => handleSort('blocked')}
                 >
-                  Action {renderSortIndicator('blocked')}
-                </button>
+                  Action
+                  {renderSortIndicator('blocked')}
+                </Button>
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -164,8 +169,12 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
                   </TableCell>
                   <TableCell>
                     <Badge 
-                      className="text-white hover:bg-opacity-80" 
-                      style={{ backgroundColor: categoryColors[event.category] || categoryColors.unknown }}
+                      variant="outline"
+                      className="border-transparent font-semibold" 
+                      style={{ 
+                        color: categoryColors[event.category] || categoryColors.unknown,
+                        backgroundColor: `color-mix(in srgb, ${categoryColors[event.category] || categoryColors.unknown} 15%, transparent)`
+                      }}
                     >
                       {event.category}
                     </Badge>
