@@ -19,7 +19,7 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
 
   const filteredEvents = useMemo(() => {
     if (!searchQuery.trim()) return events;
-    const query = searchQuery.toLowerCase();
+    const query = searchQuery.trim().toLowerCase();
     return events.filter(
       (e) =>
         e.hostDomain.toLowerCase().includes(query) ||
@@ -52,10 +52,11 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
 
 
   const totalPages = Math.ceil(sortedEvents.length / pageSize) || 1;
+  const effectivePage = Math.min(currentPage, totalPages);
   const paginatedEvents = useMemo(() => {
-    const start = (currentPage - 1) * pageSize;
+    const start = (effectivePage - 1) * pageSize;
     return sortedEvents.slice(start, start + pageSize);
-  }, [sortedEvents, currentPage]);
+  }, [sortedEvents, effectivePage]);
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -100,30 +101,42 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
         <table className="w-full text-left border-collapse text-sm">
           <thead>
             <tr className="bg-slate-900/50 text-slate-400 text-xxs uppercase tracking-wider select-none">
-              <th 
-                className="px-6 py-4 font-medium cursor-pointer hover:text-slate-200 transition-colors group"
-                onClick={() => handleSort('timestamp')}
-              >
-                Timestamp {renderSortIndicator('timestamp')}
+              <th className="p-0 font-medium" aria-sort={sortField === 'timestamp' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
+                <button
+                  type="button"
+                  className="w-full h-full text-left px-6 py-4 cursor-pointer hover:text-slate-200 transition-colors group focus:outline-none focus:bg-slate-800"
+                  onClick={() => handleSort('timestamp')}
+                >
+                  Timestamp {renderSortIndicator('timestamp')}
+                </button>
               </th>
-              <th 
-                className="px-6 py-4 font-medium cursor-pointer hover:text-slate-200 transition-colors group"
-                onClick={() => handleSort('hostDomain')}
-              >
-                Host Domain {renderSortIndicator('hostDomain')}
+              <th className="p-0 font-medium" aria-sort={sortField === 'hostDomain' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
+                <button
+                  type="button"
+                  className="w-full h-full text-left px-6 py-4 cursor-pointer hover:text-slate-200 transition-colors group focus:outline-none focus:bg-slate-800"
+                  onClick={() => handleSort('hostDomain')}
+                >
+                  Host Domain {renderSortIndicator('hostDomain')}
+                </button>
               </th>
               <th className="px-6 py-4 font-medium">Tracker URL</th>
-              <th 
-                className="px-6 py-4 font-medium cursor-pointer hover:text-slate-200 transition-colors group"
-                onClick={() => handleSort('category')}
-              >
-                Category {renderSortIndicator('category')}
+              <th className="p-0 font-medium" aria-sort={sortField === 'category' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
+                <button
+                  type="button"
+                  className="w-full h-full text-left px-6 py-4 cursor-pointer hover:text-slate-200 transition-colors group focus:outline-none focus:bg-slate-800"
+                  onClick={() => handleSort('category')}
+                >
+                  Category {renderSortIndicator('category')}
+                </button>
               </th>
-              <th 
-                className="px-6 py-4 font-medium cursor-pointer hover:text-slate-200 transition-colors group"
-                onClick={() => handleSort('blocked')}
-              >
-                Action {renderSortIndicator('blocked')}
+              <th className="p-0 font-medium" aria-sort={sortField === 'blocked' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
+                <button
+                  type="button"
+                  className="w-full h-full text-left px-6 py-4 cursor-pointer hover:text-slate-200 transition-colors group focus:outline-none focus:bg-slate-800"
+                  onClick={() => handleSort('blocked')}
+                >
+                  Action {renderSortIndicator('blocked')}
+                </button>
               </th>
             </tr>
           </thead>
@@ -180,24 +193,24 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
       {sortedEvents.length > 0 && (
         <div className="px-6 py-4 border-t border-slate-800 flex items-center justify-between text-sm text-slate-400">
           <div>
-            Showing <span className="font-medium text-slate-200">{Math.min((currentPage - 1) * pageSize + 1, sortedEvents.length)}</span> to{' '}
-            <span className="font-medium text-slate-200">{Math.min(currentPage * pageSize, sortedEvents.length)}</span> of{' '}
+            Showing <span className="font-medium text-slate-200">{Math.min((effectivePage - 1) * pageSize + 1, sortedEvents.length)}</span> to{' '}
+            <span className="font-medium text-slate-200">{Math.min(effectivePage * pageSize, sortedEvents.length)}</span> of{' '}
             <span className="font-medium text-slate-200">{sortedEvents.length}</span> results
           </div>
           <div className="flex items-center gap-2">
             <button
-              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((p) => Math.max(1, Math.min(p, totalPages) - 1))}
+              disabled={effectivePage === 1}
               className="px-3 py-1.5 rounded bg-slate-800 text-slate-300 hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Previous
             </button>
             <span className="px-2">
-              Page {currentPage} of {totalPages}
+              Page {effectivePage} of {totalPages}
             </span>
             <button
-              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, Math.min(p, totalPages) + 1))}
+              disabled={effectivePage === totalPages}
               className="px-3 py-1.5 rounded bg-slate-800 text-slate-300 hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Next
