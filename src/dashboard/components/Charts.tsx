@@ -120,7 +120,7 @@ export function Charts({ events, categoryColors }: ChartsProps) {
                   content={<ChartTooltipContent hideLabel />}
                 />
                 <ChartLegend 
-                  content={<ChartLegendContent />} 
+                  content={<ChartLegendContent nameKey="name" />} 
                   className="-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center" 
                 />
             </PieChart>
