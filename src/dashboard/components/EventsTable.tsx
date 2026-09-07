@@ -169,8 +169,12 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
                   </TableCell>
                   <TableCell>
                     <Badge 
-                      className="text-white hover:bg-opacity-80" 
-                      style={{ backgroundColor: categoryColors[event.category] || categoryColors.unknown }}
+                      variant="outline"
+                      className="border-transparent font-semibold" 
+                      style={{ 
+                        color: categoryColors[event.category] || categoryColors.unknown,
+                        backgroundColor: `color-mix(in srgb, ${categoryColors[event.category] || categoryColors.unknown} 15%, transparent)`
+                      }}
                     >
                       {event.category}
                     </Badge>
