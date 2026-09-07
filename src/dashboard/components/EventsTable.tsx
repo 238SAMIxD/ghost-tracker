@@ -159,7 +159,7 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
                     {new Date(event.timestamp).toLocaleString()}
                   </TableCell>
                   <TableCell className="font-medium">{event.hostDomain}</TableCell>
-                  <TableCell className="max-w-[300px] truncate text-muted-foreground" title={event.trackerUrl}>
+                  <TableCell className="max-w-table-col truncate text-muted-foreground" title={event.trackerUrl}>
                     {event.trackerUrl}
                   </TableCell>
                   <TableCell>
