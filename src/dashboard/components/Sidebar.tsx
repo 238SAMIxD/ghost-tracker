@@ -1,4 +1,5 @@
 import type { ViewType } from '../Dashboard';
+import { Button } from '@/components/ui/button';
 
 interface SidebarProps {
   currentView: ViewType;
@@ -29,18 +30,19 @@ export function Sidebar({ currentView, onChangeView }: SidebarProps) {
         {navItems.map((item) => {
           const isActive = currentView === item.id;
           return (
-            <button
+            <Button
               key={item.id}
+              variant={isActive ? "secondary" : "ghost"}
               onClick={() => onChangeView(item.id)}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+              className={`w-full justify-start gap-3 px-3 py-5 text-sm font-medium ${
                 isActive
                   ? 'bg-sidebar-accent text-sidebar-accent-foreground'
-                  : 'hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground'
+                  : 'hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground text-muted-foreground'
               }`}
             >
               <span className="text-lg opacity-80">{item.icon}</span>
               {item.label}
-            </button>
+            </Button>
           );
         })}
       </nav>
