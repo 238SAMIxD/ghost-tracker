@@ -64,7 +64,7 @@ export function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-slate-950 text-slate-50 font-sans antialiased overflow-hidden selection:bg-indigo-500/30">
+    <div className="flex h-screen bg-background text-foreground font-sans antialiased overflow-hidden selection:bg-primary/30">
       <Sidebar currentView={currentView} onChangeView={setCurrentView} />
 
       <div className="flex-1 flex flex-col min-w-0">
@@ -97,7 +97,7 @@ export function Dashboard() {
 
 
             {currentView === 'settings' && (
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 flex flex-col items-center justify-center text-slate-500 h-64 border-dashed">
+              <div className="border border-border rounded-xl p-8 flex flex-col items-center justify-center text-muted-foreground h-64 border-dashed bg-card text-card-foreground shadow-sm">
                 <span className="text-4xl mb-3">⚙️</span>
                 <p className="font-medium">Settings Panel coming soon</p>
               </div>

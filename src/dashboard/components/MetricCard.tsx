@@ -1,3 +1,5 @@
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
 export function MetricCard({
   label,
   value,
@@ -8,16 +10,17 @@ export function MetricCard({
   color: string;
 }) {
   return (
-    <div className="bg-slate-800 rounded-xl p-5 text-center flex flex-col justify-center shadow-sm border border-slate-700/50">
-      <p className="m-0 text-xxs text-slate-400 uppercase tracking-widest font-medium">
-        {label}
-      </p>
-      <p
-        className="mt-2 mb-0 text-3xl font-extrabold"
-        style={{ color }}
-      >
-        {value}
-      </p>
-    </div>
+    <Card className="flex flex-col justify-center text-center shadow-sm">
+      <CardHeader className="p-4 pb-0">
+        <CardTitle className="text-xxs text-muted-foreground uppercase tracking-widest font-medium">
+          {label}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="p-4 pt-2">
+        <p className="text-3xl font-extrabold" style={{ color }}>
+          {value}
+        </p>
+      </CardContent>
+    </Card>
   );
 }
