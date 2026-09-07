@@ -64,7 +64,7 @@ export function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-background text-foreground font-sans antialiased overflow-hidden selection:bg-primary/30">
+    <div className="dark flex h-screen bg-background text-foreground font-sans antialiased overflow-hidden selection:bg-primary/30">
       <Sidebar currentView={currentView} onChangeView={setCurrentView} />
 
       <div className="flex-1 flex flex-col min-w-0">

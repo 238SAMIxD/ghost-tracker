@@ -41,7 +41,7 @@ export function Popup() {
   };
 
   return (
-    <div className="w-[320px] p-5 font-sans bg-background text-foreground">
+    <div className="dark w-[320px] p-5 font-sans bg-background text-foreground">
       {/* Header */}
       <div className="flex items-center gap-2.5 mb-4">
         <span className="text-3xl">👻</span>

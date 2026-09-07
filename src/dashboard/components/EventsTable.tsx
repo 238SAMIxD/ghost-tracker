@@ -100,34 +100,42 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead 
-                className="cursor-pointer hover:text-foreground transition-colors"
-                onClick={() => handleSort('timestamp')}
-                aria-sort={sortField === 'timestamp' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}
-              >
-                Timestamp {renderSortIndicator('timestamp')}
+              <TableHead aria-sort={sortField === 'timestamp' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
+                <button
+                  type="button"
+                  className="flex items-center hover:text-foreground transition-colors focus:outline-none"
+                  onClick={() => handleSort('timestamp')}
+                >
+                  Timestamp {renderSortIndicator('timestamp')}
+                </button>
               </TableHead>
-              <TableHead 
-                className="cursor-pointer hover:text-foreground transition-colors"
-                onClick={() => handleSort('hostDomain')}
-                aria-sort={sortField === 'hostDomain' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}
-              >
-                Host Domain {renderSortIndicator('hostDomain')}
+              <TableHead aria-sort={sortField === 'hostDomain' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
+                <button
+                  type="button"
+                  className="flex items-center hover:text-foreground transition-colors focus:outline-none"
+                  onClick={() => handleSort('hostDomain')}
+                >
+                  Host Domain {renderSortIndicator('hostDomain')}
+                </button>
               </TableHead>
               <TableHead>Tracker URL</TableHead>
-              <TableHead 
-                className="cursor-pointer hover:text-foreground transition-colors"
-                onClick={() => handleSort('category')}
-                aria-sort={sortField === 'category' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}
-              >
-                Category {renderSortIndicator('category')}
+              <TableHead aria-sort={sortField === 'category' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
+                <button
+                  type="button"
+                  className="flex items-center hover:text-foreground transition-colors focus:outline-none"
+                  onClick={() => handleSort('category')}
+                >
+                  Category {renderSortIndicator('category')}
+                </button>
               </TableHead>
-              <TableHead 
-                className="cursor-pointer hover:text-foreground transition-colors"
-                onClick={() => handleSort('blocked')}
-                aria-sort={sortField === 'blocked' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}
-              >
-                Action {renderSortIndicator('blocked')}
+              <TableHead aria-sort={sortField === 'blocked' ? (sortOrder === 'asc' ? 'ascending' : 'descending') : 'none'}>
+                <button
+                  type="button"
+                  className="flex items-center hover:text-foreground transition-colors focus:outline-none"
+                  onClick={() => handleSort('blocked')}
+                >
+                  Action {renderSortIndicator('blocked')}
+                </button>
               </TableHead>
             </TableRow>
           </TableHeader>
