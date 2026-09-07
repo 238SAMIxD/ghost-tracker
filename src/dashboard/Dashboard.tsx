@@ -73,10 +73,10 @@ export function Dashboard() {
         <main className="flex-1 overflow-y-auto p-8">
           <div className="max-w-7xl mx-auto space-y-8">
             
-            {/* Overview View */}
+
             {currentView === 'overview' && (
               <>
-                {/* Metric Cards */}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                   <MetricCard label="Total Blocked" value={totalBlocked} color="#22c55e" />
                   <MetricCard label="Analytics" value={categoryCounts.analytics || 0} color={categoryColors.analytics} />
@@ -85,17 +85,17 @@ export function Dashboard() {
                   <MetricCard label="Telemetry" value={categoryCounts.telemetry || 0} color={categoryColors.telemetry} />
                 </div>
 
-                {/* Data Visualizations */}
+
                 <Charts events={events} categoryColors={categoryColors} />
               </>
             )}
 
-            {/* Events Log View */}
+
             {(currentView === 'overview' || currentView === 'events') && (
               <EventsTable events={events} categoryColors={categoryColors} />
             )}
 
-            {/* Settings View */}
+
             {currentView === 'settings' && (
               <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 flex flex-col items-center justify-center text-slate-500 h-64 border-dashed">
                 <span className="text-4xl mb-3">⚙️</span>

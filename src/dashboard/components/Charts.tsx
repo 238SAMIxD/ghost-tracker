@@ -65,7 +65,7 @@ export function Charts({ events, categoryColors }: ChartsProps) {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      {/* Category Pie Chart */}
+
       <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm flex flex-col">
         <h2 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-6">
           Tracker Categories
@@ -106,7 +106,7 @@ export function Charts({ events, categoryColors }: ChartsProps) {
         </div>
       </div>
 
-      {/* Top Domains Bar Chart */}
+
       <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm flex flex-col">
         <h2 className="text-sm font-bold text-slate-300 uppercase tracking-wider mb-6">
           Top Targeted Domains

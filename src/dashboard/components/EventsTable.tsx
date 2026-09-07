@@ -16,7 +16,7 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 50;
 
-  // 1. Filter
+
   const filteredEvents = useMemo(() => {
     if (!searchQuery.trim()) return events;
     const query = searchQuery.toLowerCase();
@@ -28,7 +28,7 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
     );
   }, [events, searchQuery]);
 
-  // 2. Sort
+
   const sortedEvents = useMemo(() => {
     return [...filteredEvents].sort((a, b) => {
       let comparison = 0;
@@ -50,7 +50,7 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
     });
   }, [filteredEvents, sortField, sortOrder]);
 
-  // 3. Paginate
+
   const totalPages = Math.ceil(sortedEvents.length / pageSize) || 1;
   const paginatedEvents = useMemo(() => {
     const start = (currentPage - 1) * pageSize;
@@ -79,7 +79,7 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
 
   return (
     <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-sm flex flex-col">
-      {/* Toolbar */}
+
       <div className="px-6 py-4 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <h2 className="m-0 text-base font-bold text-slate-100 whitespace-nowrap">Recent Tracker Events</h2>
         
@@ -95,7 +95,7 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
         </div>
       </div>
 
-      {/* Table */}
+
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse text-sm">
           <thead>
@@ -176,7 +176,7 @@ export function EventsTable({ events, categoryColors }: EventsTableProps) {
         </table>
       </div>
 
-      {/* Pagination Footer */}
+
       {sortedEvents.length > 0 && (
         <div className="px-6 py-4 border-t border-slate-800 flex items-center justify-between text-sm text-slate-400">
           <div>
