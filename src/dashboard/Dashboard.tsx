@@ -4,6 +4,7 @@ import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { MetricCard } from './components/MetricCard';
 import { Charts } from './components/Charts';
+import { EventsTable } from './components/EventsTable';
 
 export type ViewType = 'overview' | 'events' | 'settings';
 
@@ -72,10 +73,10 @@ export function Dashboard() {
         <main className="flex-1 overflow-y-auto p-8">
           <div className="max-w-7xl mx-auto space-y-8">
             
-            {/* Overview View */}
+
             {currentView === 'overview' && (
               <>
-                {/* Metric Cards */}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                   <MetricCard label="Total Blocked" value={totalBlocked} color="#22c55e" />
                   <MetricCard label="Analytics" value={categoryCounts.analytics || 0} color={categoryColors.analytics} />
@@ -84,73 +85,17 @@ export function Dashboard() {
                   <MetricCard label="Telemetry" value={categoryCounts.telemetry || 0} color={categoryColors.telemetry} />
                 </div>
 
-                {/* Data Visualizations */}
+
                 <Charts events={events} categoryColors={categoryColors} />
               </>
             )}
 
-            {/* Events Log View */}
+
             {(currentView === 'overview' || currentView === 'events') && (
-              <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-sm">
-                <div className="px-6 py-4 border-b border-slate-800">
-                  <h2 className="m-0 text-base font-bold text-slate-100">Recent Tracker Events</h2>
-                </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse text-sm">
-                    <thead>
-                      <tr className="bg-slate-900/50 text-slate-400 text-xxs uppercase tracking-wider">
-                        <th className="px-6 py-4 font-medium">Timestamp</th>
-                        <th className="px-6 py-4 font-medium">Host Domain</th>
-                        <th className="px-6 py-4 font-medium">Tracker URL</th>
-                        <th className="px-6 py-4 font-medium">Category</th>
-                        <th className="px-6 py-4 font-medium">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-800/50">
-                      {events.length === 0 && (
-                        <tr>
-                          <td colSpan={5} className="px-6 py-12 text-center text-slate-500">
-                            No tracker events recorded yet. Browse the web and Ghost Tracker will capture them here.
-                          </td>
-                        </tr>
-                      )}
-                      {events.map((event, i) => (
-                        <tr key={event.id ?? i} className="hover:bg-slate-800/30 transition-colors">
-                          <td className="px-6 py-3 whitespace-nowrap text-slate-300">
-                            {new Date(event.timestamp).toLocaleString()}
-                          </td>
-                          <td className="px-6 py-3 font-medium text-slate-200">{event.hostDomain}</td>
-                          <td className="px-6 py-3 max-w-table-col truncate text-slate-400">
-                            {event.trackerUrl}
-                          </td>
-                          <td className="px-6 py-3">
-                            <span
-                              className="inline-flex px-2 py-0.5 rounded text-micro font-bold uppercase tracking-wide text-white"
-                              style={{ backgroundColor: categoryColors[event.category] || categoryColors.unknown }}
-                            >
-                              {event.category}
-                            </span>
-                          </td>
-                          <td className="px-6 py-3">
-                            {event.blocked ? (
-                              <span className="flex items-center gap-1.5 text-emerald-400 font-medium">
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Blocked
-                              </span>
-                            ) : (
-                              <span className="flex items-center gap-1.5 text-amber-400 font-medium">
-                                <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Allowed
-                              </span>
-                            )}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+              <EventsTable events={events} categoryColors={categoryColors} />
             )}
 
-            {/* Settings View */}
+
             {currentView === 'settings' && (
               <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 flex flex-col items-center justify-center text-slate-500 h-64 border-dashed">
                 <span className="text-4xl mb-3">⚙️</span>

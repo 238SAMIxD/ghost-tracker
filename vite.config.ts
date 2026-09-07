@@ -26,6 +26,9 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     rollupOptions: {
+      input: {
+        dashboard: path.resolve(__dirname, 'src/dashboard/index.html'),
+      },
       preserveEntrySignatures: 'exports-only',
     },
   },
