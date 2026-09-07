@@ -9,6 +9,7 @@
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
+    "types": ["chrome", "node"],
     "noEmit": true,
     "jsx": "react-jsx",
     "strict": true,
@@ -21,5 +22,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "tests"]
 }
