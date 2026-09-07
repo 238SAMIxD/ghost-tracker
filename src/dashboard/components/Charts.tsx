@@ -103,7 +103,7 @@ export function Charts({ events, categoryColors }: ChartsProps) {
                   color: 'var(--popover-foreground)',
                 }}
                 itemStyle={{ color: 'var(--popover-foreground)' }}
-                formatter={(value: any, name: any) => [value, String(name).toUpperCase()]}
+                formatter={(value, name) => [value, String(name).toUpperCase()]}
               />
             </PieChart>
           </ResponsiveContainer>
@@ -137,7 +137,7 @@ export function Charts({ events, categoryColors }: ChartsProps) {
                   borderRadius: 'calc(var(--radius) - 2px)',
                   color: 'var(--popover-foreground)',
                 }}
-                formatter={(value: any) => [value, 'Trackers']}
+                formatter={(value) => [value, 'Trackers']}
               />
               <Bar dataKey="value" fill="var(--primary)" radius={[0, 4, 4, 0]} barSize={24} />
             </BarChart>
