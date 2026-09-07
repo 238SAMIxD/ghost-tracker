@@ -1,2 +1,9 @@
 @import 'tailwindcss';
 
+@theme {
+  --text-micro: 10px;
+  --text-xxs: 11px;
+  --spacing-popup: 320px;
+  --spacing-table-col: 300px;
+  --spacing-chart: 250px;
+}

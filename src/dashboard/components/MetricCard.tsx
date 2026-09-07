@@ -9,7 +9,7 @@ export function MetricCard({
 }) {
   return (
     <div className="bg-slate-800 rounded-xl p-5 text-center flex flex-col justify-center shadow-sm border border-slate-700/50">
-      <p className="m-0 text-[11px] text-slate-400 uppercase tracking-widest font-medium">
+      <p className="m-0 text-xxs text-slate-400 uppercase tracking-widest font-medium">
         {label}
       </p>
       <p

@@ -23,7 +23,7 @@ export function Sidebar({ currentView, onChangeView }: SidebarProps) {
       </div>
 
       <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-        <div className="text-[10px] uppercase tracking-wider text-slate-500 font-bold mb-3 px-3">
+        <div className="text-micro uppercase tracking-wider text-slate-500 font-bold mb-3 px-3">
           Menu
         </div>
         {navItems.map((item) => {

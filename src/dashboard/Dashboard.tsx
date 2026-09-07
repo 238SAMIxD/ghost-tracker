@@ -3,6 +3,7 @@ import type { TrackerEvent } from '@/db';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { MetricCard } from './components/MetricCard';
+import { Charts } from './components/Charts';
 
 export type ViewType = 'overview' | 'events' | 'settings';
 
@@ -83,11 +84,8 @@ export function Dashboard() {
                   <MetricCard label="Telemetry" value={categoryCounts.telemetry || 0} color={categoryColors.telemetry} />
                 </div>
 
-                {/* Dashboard summary placeholder - Future Charts go here */}
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 flex flex-col items-center justify-center text-slate-500 h-64 border-dashed">
-                  <span className="text-4xl mb-3">📈</span>
-                  <p className="font-medium">Data Visualizations coming soon (PI-2)</p>
-                </div>
+                {/* Data Visualizations */}
+                <Charts events={events} categoryColors={categoryColors} />
               </>
             )}
 
@@ -100,7 +98,7 @@ export function Dashboard() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse text-sm">
                     <thead>
-                      <tr className="bg-slate-900/50 text-slate-400 text-[11px] uppercase tracking-wider">
+                      <tr className="bg-slate-900/50 text-slate-400 text-xxs uppercase tracking-wider">
                         <th className="px-6 py-4 font-medium">Timestamp</th>
                         <th className="px-6 py-4 font-medium">Host Domain</th>
                         <th className="px-6 py-4 font-medium">Tracker URL</th>
@@ -122,12 +120,12 @@ export function Dashboard() {
                             {new Date(event.timestamp).toLocaleString()}
                           </td>
                           <td className="px-6 py-3 font-medium text-slate-200">{event.hostDomain}</td>
-                          <td className="px-6 py-3 max-w-[300px] truncate text-slate-400">
+                          <td className="px-6 py-3 max-w-table-col truncate text-slate-400">
                             {event.trackerUrl}
                           </td>
                           <td className="px-6 py-3">
                             <span
-                              className="inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide text-white"
+                              className="inline-flex px-2 py-0.5 rounded text-micro font-bold uppercase tracking-wide text-white"
                               style={{ backgroundColor: categoryColors[event.category] || categoryColors.unknown }}
                             >
                               {event.category}
