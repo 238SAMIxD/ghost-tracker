@@ -74,7 +74,7 @@ export function Charts({ events, categoryColors }: ChartsProps) {
             Tracker Categories
           </CardTitle>
         </CardHeader>
-        <CardContent className="flex-1 min-h-[250px]">
+        <CardContent className="flex-1 h-[250px] w-full">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -116,7 +116,7 @@ export function Charts({ events, categoryColors }: ChartsProps) {
             Top Targeted Domains
           </CardTitle>
         </CardHeader>
-        <CardContent className="flex-1 min-h-[250px]">
+        <CardContent className="flex-1 h-[250px] w-full">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={barData} layout="vertical" margin={{ top: 0, right: 30, left: 40, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" horizontal={true} vertical={false} />
