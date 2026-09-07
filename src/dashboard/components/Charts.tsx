@@ -4,8 +4,6 @@ import {
   PieChart,
   Pie,
   Cell,
-  Tooltip as RechartsTooltip,
-  ResponsiveContainer,
   BarChart,
   Bar,
   XAxis,
@@ -13,6 +11,7 @@ import {
   CartesianGrid,
 } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from '@/components/ui/chart';
 
 interface ChartsProps {
   events: TrackerEvent[];
@@ -33,9 +32,9 @@ export function Charts({ events, categoryColors }: ChartsProps) {
       );
 
     return Object.entries(counts)
-      .map(([name, value]) => ({ name, value }))
+      .map(([name, value]) => ({ name, value, fill: categoryColors[name as TrackerEvent['category']] || categoryColors.unknown }))
       .sort((a, b) => b.value - a.value);
-  }, [events]);
+  }, [events, categoryColors]);
 
   // Aggregate data for Bar Chart (Top Tracker Domains)
   const barData = useMemo(() => {
@@ -54,6 +53,19 @@ export function Charts({ events, categoryColors }: ChartsProps) {
       .sort((a, b) => b.value - a.value)
       .slice(0, 5); // Top 5
   }, [events]);
+
+  const pieChartConfig = {
+    analytics: { label: "Analytics", color: categoryColors.analytics },
+    ads: { label: "Ads", color: categoryColors.ads },
+    social: { label: "Social", color: categoryColors.social },
+    telemetry: { label: "Telemetry", color: categoryColors.telemetry },
+    unknown: { label: "Unknown", color: categoryColors.unknown },
+    value: { label: "Trackers" }
+  } satisfies ChartConfig;
+
+  const barChartConfig = {
+    value: { label: "Trackers", color: "var(--primary)" }
+  } satisfies ChartConfig;
 
   if (events.filter((e) => e.blocked).length === 0) {
     return (
@@ -75,7 +87,7 @@ export function Charts({ events, categoryColors }: ChartsProps) {
           </CardTitle>
         </CardHeader>
         <CardContent className="flex-1 w-full pb-0">
-          <ResponsiveContainer width="100%" height={250}>
+          <ChartContainer config={pieChartConfig} className="mx-auto aspect-square max-h-[250px]">
             <PieChart>
               <Pie
                 data={pieData}
@@ -90,23 +102,17 @@ export function Charts({ events, categoryColors }: ChartsProps) {
                 {pieData.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
-                    fill={categoryColors[entry.name as TrackerEvent['category']] || categoryColors.unknown}
+                    fill={entry.fill}
                     stroke="rgba(0,0,0,0.1)"
                   />
                 ))}
               </Pie>
-              <RechartsTooltip
-                contentStyle={{
-                  backgroundColor: 'var(--popover)',
-                  borderColor: 'var(--border)',
-                  borderRadius: 'calc(var(--radius) - 2px)',
-                  color: 'var(--popover-foreground)',
-                }}
-                itemStyle={{ color: 'var(--popover-foreground)' }}
-                formatter={(value, name) => [value, String(name).toUpperCase()]}
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
               />
             </PieChart>
-          </ResponsiveContainer>
+          </ChartContainer>
         </CardContent>
       </Card>
 
@@ -117,7 +123,7 @@ export function Charts({ events, categoryColors }: ChartsProps) {
           </CardTitle>
         </CardHeader>
         <CardContent className="flex-1 w-full pb-0">
-          <ResponsiveContainer width="100%" height={250}>
+          <ChartContainer config={barChartConfig} className="max-h-[250px] w-full">
             <BarChart data={barData} layout="vertical" margin={{ top: 0, right: 30, left: 40, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" horizontal={true} vertical={false} />
               <XAxis type="number" hide />
@@ -129,19 +135,13 @@ export function Charts({ events, categoryColors }: ChartsProps) {
                 tick={{ fill: 'var(--muted-foreground)', fontSize: 12 }}
                 width={100}
               />
-              <RechartsTooltip
+              <ChartTooltip
                 cursor={{ fill: 'var(--muted)', opacity: 0.4 }}
-                contentStyle={{
-                  backgroundColor: 'var(--popover)',
-                  borderColor: 'var(--border)',
-                  borderRadius: 'calc(var(--radius) - 2px)',
-                  color: 'var(--popover-foreground)',
-                }}
-                formatter={(value) => [value, 'Trackers']}
+                content={<ChartTooltipContent hideLabel />}
               />
-              <Bar dataKey="value" fill="var(--primary)" radius={[0, 4, 4, 0]} barSize={24} />
+              <Bar dataKey="value" fill="var(--color-value)" radius={[0, 4, 4, 0]} barSize={24} />
             </BarChart>
-          </ResponsiveContainer>
+          </ChartContainer>
         </CardContent>
       </Card>
     </div>
