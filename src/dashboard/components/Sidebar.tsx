@@ -1,5 +1,6 @@
 import type { ViewType } from '../Dashboard';
 import { Button } from '@/components/ui/button';
+import { LayoutDashboard, List, Settings, Ghost } from 'lucide-react';
 
 interface SidebarProps {
   currentView: ViewType;
@@ -7,16 +8,16 @@ interface SidebarProps {
 }
 
 export function Sidebar({ currentView, onChangeView }: SidebarProps) {
-  const navItems: { id: ViewType; label: string; icon: string }[] = [
-    { id: 'overview', label: 'Overview', icon: '📊' },
-    { id: 'events', label: 'Events Log', icon: '📋' },
-    { id: 'settings', label: 'Settings', icon: '⚙️' },
-  ];
+  const navItems = [
+    { id: 'overview', label: 'Overview', icon: LayoutDashboard },
+    { id: 'events', label: 'Events Log', icon: List },
+    { id: 'settings', label: 'Settings', icon: Settings },
+  ] as const;
 
   return (
     <aside className="w-64 bg-sidebar text-sidebar-foreground border-r border-sidebar-border flex flex-col h-full shrink-0">
       <div className="p-6 flex items-center gap-3 border-b border-sidebar-border/50">
-        <span className="text-3xl">👻</span>
+        <Ghost className="h-8 w-8 text-primary" />
         <div>
           <h1 className="m-0 text-xl font-extrabold tracking-tight">Ghost Tracker</h1>
           <p className="m-0 text-xs text-muted-foreground font-medium">Privacy Dashboard</p>
@@ -29,6 +30,7 @@ export function Sidebar({ currentView, onChangeView }: SidebarProps) {
         </div>
         {navItems.map((item) => {
           const isActive = currentView === item.id;
+          const Icon = item.icon;
           return (
             <Button
               key={item.id}
@@ -40,7 +42,7 @@ export function Sidebar({ currentView, onChangeView }: SidebarProps) {
                   : 'hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground text-muted-foreground'
               }`}
             >
-              <span className="text-lg opacity-80">{item.icon}</span>
+              <Icon className="h-5 w-5 opacity-80" />
               {item.label}
             </Button>
           );

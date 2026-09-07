@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Ghost, LayoutDashboard } from 'lucide-react';
 
 export function Popup() {
   const [currentDomain, setCurrentDomain] = useState<string>('—');
@@ -44,7 +45,7 @@ export function Popup() {
     <div className="dark w-popup p-5 font-sans bg-background text-foreground">
       {/* Header */}
       <div className="flex items-center gap-2.5 mb-4">
-        <span className="text-3xl">👻</span>
+        <Ghost className="h-8 w-8 text-primary" />
         <div>
           <h1 className="m-0 text-lg font-bold">Ghost Tracker</h1>
           <p className="m-0 text-xs text-muted-foreground">
@@ -82,7 +83,7 @@ export function Popup() {
         onClick={handleOpenDashboard}
         className="w-full flex items-center justify-center gap-2"
       >
-        <span>📊</span> Open Full Dashboard
+        <LayoutDashboard className="h-4 w-4" /> Open Full Dashboard
       </Button>
     </div>
   );
